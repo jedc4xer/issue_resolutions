@@ -26,3 +26,17 @@ Writing Single Files to Blob:
         dbutils.fs.mv(csv_file, final_path)
         dbutils.fs.rm(write_path + '/' + getArgument('filename')[:-4], recurse = True)
         '''
+
+# This code broke the cloud
+# It started appending /acs_2005.csv to everything
+# for example: 19049_005E&amp;for=county:*/acs_2005.csv
+
+#----------------------------------------------
+# path = os.path.join(acs_api, f'acs_{year}.csv')
+# spark.sparkContext.addFile(path)
+#------------------------------------------------
+
+# Clearing state, removing from cluster, restarting notebook, did not help.
+
+# I fixed the problem with this line of code
+# spark._sc.stop()
